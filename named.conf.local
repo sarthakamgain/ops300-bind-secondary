@@ -1,0 +1,19 @@
+include "/etc/bind/xfr.key";
+
+server 192.168.4.10 {
+    keys { "xfr-key"; };
+};
+
+zone "lab.samgain3.300.ops" {
+    type secondary;
+    file "/var/cache/bind/db.lab.samgain3.300.ops";
+    primaries { 192.168.4.10; };
+    allow-transfer { none; };
+};
+
+zone "4.168.192.in-addr.arpa" {
+    type secondary;
+    file "/var/cache/bind/db.192.168.4";
+    primaries { 192.168.4.10; };
+    allow-transfer { none; };
+};

@@ -1,0 +1,19 @@
+acl trusted {
+    127.0.0.1;
+    192.168.4.0/24;
+    10.88.0.0/16;
+    10.0.2.0/24;
+    10.0.2.0/24;
+};
+
+options {
+    directory "/var/cache/bind";
+    recursion no;
+    allow-recursion { none; };
+    allow-query { trusted; };
+    listen-on { any; };
+    listen-on-v6 { none; };
+    dnssec-validation auto;
+    version "none";
+    blackhole { !192.168.0.0/16; };
+};
